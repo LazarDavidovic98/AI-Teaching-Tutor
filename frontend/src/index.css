@@ -1,0 +1,37 @@
+/* Globalni stilovi – Tailwind direktive */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Vlastiti scroll bar – moderan, taman */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+
+/* KaTeX formule – uskladi boje sa tamnom temom */
+.katex { color: #e2e8f0; }
+
+/* Chat bubble animacija */
+.chat-bubble {
+  @apply animate-slide-up;
+}
+
+/* Gradient tekst za naslove */
+.gradient-text {
+  @apply bg-gradient-to-r from-primary-400 to-accent-400 bg-clip-text text-transparent;
+}
+
+/* Stakleni efekt za kartice */
+.glass-card {
+  @apply bg-slate-900/60 backdrop-blur-sm border border-slate-700/50 rounded-2xl;
+}

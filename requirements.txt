@@ -1,0 +1,35 @@
+# AI Teaching Tutor – Python zavisnosti
+# Instaliraj: pip install -r requirements.txt
+
+# ── Web framework ────────────────────────────────────────────────────────────
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+
+# ── Validacija i konfiguracija ────────────────────────────────────────────────
+pydantic==2.8.2
+pydantic-settings==2.4.0
+python-multipart==0.0.9       # Podrška za file upload u FastAPI-ju
+
+# ── Baza podataka ─────────────────────────────────────────────────────────────
+sqlalchemy==2.0.35
+aiosqlite==0.20.0             # Opciono: async SQLite
+
+# ── Autentifikacija ───────────────────────────────────────────────────────────
+bcrypt==4.2.0
+python-jose[cryptography]==3.3.0
+
+# ── LLM i embeddinzi (OpenAI) ─────────────────────────────────────────────────
+openai==1.47.0
+
+# ── Vektorska baza ────────────────────────────────────────────────────────────
+chromadb==0.5.12
+
+# ── Čitanje PDF-ova ───────────────────────────────────────────────────────────
+pymupdf==1.24.10              # fitz – brzo čitanje PDF-ova
+
+# ── Opciono: Lokalni embeddinzi (bez OpenAI) ─────────────────────────────────
+# sentence-transformers==3.1.1
+# torch==2.4.1
+
+# ── Razvojni alati ────────────────────────────────────────────────────────────
+python-dotenv==1.0.1
