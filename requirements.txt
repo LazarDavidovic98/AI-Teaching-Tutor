@@ -19,17 +19,17 @@ bcrypt==4.2.0
 python-jose[cryptography]==3.3.0
 
 # ── LLM i embeddinzi (OpenAI) ─────────────────────────────────────────────────
-openai==1.47.0
+openai==1.57.0
 
 # ── Vektorska baza ────────────────────────────────────────────────────────────
-chromadb==0.5.12
+chromadb==0.6.3
+httpx==0.27.2
 
 # ── Čitanje PDF-ova ───────────────────────────────────────────────────────────
 pymupdf==1.24.10              # fitz – brzo čitanje PDF-ova
 
 # ── Opciono: Lokalni embeddinzi (bez OpenAI) ─────────────────────────────────
-# sentence-transformers==3.1.1
-# torch==2.4.1
+sentence-transformers==3.2.1
 
 # ── Razvojni alati ────────────────────────────────────────────────────────────
 python-dotenv==1.0.1

@@ -13,7 +13,7 @@ import { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
-import { Send, Bot, User, BookOpen, Loader2, ChevronDown } from "lucide-react";
+import { Send, Bot, User, BookOpen, Loader2 } from "lucide-react";
 import api from "../services/api";
 import toast from "react-hot-toast";
 

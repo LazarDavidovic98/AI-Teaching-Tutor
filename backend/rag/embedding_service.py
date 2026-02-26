@@ -53,10 +53,16 @@ def _openai_embeddings(texts: List[str]) -> List[List[float]]:
     return [item.embedding for item in response.data]
 
 
+
+# Keš za lokalni model – instancira se samo jednom tokom životnog vijeka procesa
+_local_model_cache: dict = {}
+
+
 def _local_embeddings(texts: List[str]) -> List[List[float]]:
     """
     Koristi lokalni SentenceTransformers model — potpuno offline, besplatno.
-    Model se preuzima samo prvi put i kešira lokalno.
+    Model se preuzima samo prvi put i kešira lokalno u memoriji procesa
+    kako bi se izbjeglo sporo ponovno učitavanje pri svakom zahtjevu.
     """
     try:
         from sentence_transformers import SentenceTransformer
@@ -67,8 +73,11 @@ def _local_embeddings(texts: List[str]) -> List[List[float]]:
         )
 
     model_name = settings.EMBEDDING_MODEL.replace("sentence-transformers/", "")
-    logger.info(f"Koristim lokalni embedding model: {model_name}")
 
-    model = SentenceTransformer(model_name)
+    if model_name not in _local_model_cache:
+        logger.info(f"Učitavam lokalni embedding model: {model_name} (jednom pri pokretanju)")
+        _local_model_cache[model_name] = SentenceTransformer(model_name)
+
+    model = _local_model_cache[model_name]
     vectors = model.encode(texts, convert_to_numpy=True)
     return vectors.tolist()

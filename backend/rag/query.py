@@ -44,10 +44,19 @@ def retrieve_context(query: str, subject: str = "general") -> Tuple[str, List[st
     # Definiši filter: ako subject nije "general", filtriraj po predmetu
     where_filter = {"subject": subject} if subject != "general" else None
 
+    # Provjeri koliko chunk-ova ima u kolekciji da izbjegnemo grešku
+    # kada se traži više rezultata nego što postoji u indeksu
+    total_items = collection.count()
+    if total_items == 0:
+        logger.warning("ChromaDB kolekcija je prazna – nema dokumenata za pretragu.")
+        return "", []
+
+    n_results = min(TOP_K_RESULTS, total_items)
+
     # Similarity search – ChromaDB koristi kosinusnu sličnost
     results = collection.query(
         query_embeddings=[query_embedding],
-        n_results=TOP_K_RESULTS,
+        n_results=n_results,
         where=where_filter,
         include=["documents", "metadatas", "distances"],
     )
